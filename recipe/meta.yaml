@@ -41,8 +41,7 @@ test:
   requires:
     - sphinx
     - pip
-    - pytest-cov
-    - pytest-regressions
+    - pytest
     - python
     # tests in run_test.py
 
@@ -54,6 +53,8 @@ about:
     - src/LICENSE
     - third-party-licenses/font-awesome-LICENSE.txt
   summary: Bootstrap-based Sphinx theme from the PyData community
+  description: |
+    kkkkllllkkkpppp
   doc_url: https://pydata-sphinx-theme.readthedocs.io/
   dev_url: https://github.com/pydata/pydata-sphinx-theme
 
