@@ -1,0 +1,3 @@
+channels:
+  - https://staging.continuum.io/prefect/fs/sphinx-theme-builder-feedstock/pr1/3c81a34
+  - https://staging.continuum.io/prefect/fs/accessible-pygments-feedstock/pr1/694e032
