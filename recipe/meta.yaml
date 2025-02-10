@@ -1,13 +1,12 @@
+{% set name = "pydata-sphinx-theme" %}
 {% set version = "0.16.1" %}
-
 package:
   name: pydata-sphinx-theme
   version: {{ version }}
 
 source:
-  url: https://github.com/pydata/pydata-sphinx-theme/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 494f9827c7cf07f412cbb1711149e02f56a9ea05ed58ac781720b150a0f8b22f
-
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydata_sphinx_theme-{{ version }}.tar.gz
+  sha256: a08b7f0b7f70387219dc659bff0893a7554d5eb39b59d3b8ef37b8401b7642d7
 build:
   number: 0
   skip: true   #[py<39]
@@ -20,6 +19,7 @@ requirements:
     - pip
     - python
     - sphinx-theme-builder 0.2.0b2
+    - wheel
   run:
     - sphinx >=6.1
     - beautifulsoup4
@@ -32,12 +32,11 @@ requirements:
     - python
 
 test:
-  source_files:
-    - src/tests
   imports:
     - pydata_sphinx_theme
   commands:
     - pip check
+    - pytest  --pyargs pydata-sphinx-theme
   requires:
     - sphinx
     - pip
@@ -53,8 +52,7 @@ about:
     - src/LICENSE
     - third-party-licenses/font-awesome-LICENSE.txt
   summary: Bootstrap-based Sphinx theme from the PyData community
-  description: |
-    kkkkllllkkkpppp
+
   doc_url: https://pydata-sphinx-theme.readthedocs.io/
   dev_url: https://github.com/pydata/pydata-sphinx-theme
 
