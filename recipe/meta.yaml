@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/pydata/pydata-sphinx-theme/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 1759e12524b440d136228086206fbd23c3cf8007a64d3cecd7eda492f85617d3
+  sha256: 494f9827c7cf07f412cbb1711149e02f56a9ea05ed58ac781720b150a0f8b22f
 
 build:
   number: 0
