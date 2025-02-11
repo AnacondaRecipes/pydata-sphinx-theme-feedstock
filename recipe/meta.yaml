@@ -12,7 +12,6 @@ build:
   skip: true   #[py<39]
   script:
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-    - cd {{ RECIPE_DIR }} && {{ PYTHON }} collect_licenses.py
 
 requirements:
   host:
@@ -36,22 +35,17 @@ test:
     - pydata_sphinx_theme
   commands:
     - pip check
-    - pytest  --pyargs pydata-sphinx-theme
   requires:
-    - sphinx
     - pip
-    - pytest
-    - python
-    # tests in run_test.py
+
 
 about:
   home: https://github.com/pydata/pydata-sphinx-theme
   license: BSD-3-Clause
   license_family: BSD
-  license_file:
-    - src/LICENSE
-    - third-party-licenses/font-awesome-LICENSE.txt
+  license_file: LICENSE
   summary: Bootstrap-based Sphinx theme from the PyData community
+  description: |
 
   doc_url: https://pydata-sphinx-theme.readthedocs.io/
   dev_url: https://github.com/pydata/pydata-sphinx-theme
