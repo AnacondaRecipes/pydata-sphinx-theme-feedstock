@@ -20,6 +20,7 @@ requirements:
   host:
     - pip
     - python
+    - nodejs 20.17.0
     - sphinx-theme-builder 0.2.0b2
   run:
     - sphinx >=6.1
