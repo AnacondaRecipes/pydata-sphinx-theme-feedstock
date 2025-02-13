@@ -34,12 +34,20 @@ requirements:
     - python
 
 test:
+  source_files:
+    - pyproject.toml
+    - tests
   imports:
     - pydata_sphinx_theme
   commands:
     - pip check
+    # ignoring test_build.py because we need pytest-regressions
+    - pytest -n auto tests --ignore=tests/test_build.py
   requires:
     - pip
+    - pytest
+    - pytest-xdist
+    - defusedxml
 
 about:
   home: https://github.com/pydata/pydata-sphinx-theme
