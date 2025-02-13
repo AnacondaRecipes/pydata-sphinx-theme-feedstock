@@ -1,0 +1,19 @@
+commit 74beadc14edafaa943f602e43a91e3006848550f
+Author: Eric Lundby <Eric.Lundby@gmail.com>
+Date:   Wed Feb 12 13:19:04 2025 -0700
+
+    Use a version of nodejs available to us.
+
+diff --git a/pyproject.toml b/pyproject.toml
+index f8b2eb2..614861f 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -5,7 +5,7 @@ requires = [
+ build-backend = "sphinx_theme_builder"
+
+ [tool.sphinx-theme-builder]
+-node-version = "22.9.0"
++node-version = "20.17.0"
+ theme-name = "pydata_sphinx_theme"
+ additional-compiled-static-assets = [
+   "webpack-macros.html",
