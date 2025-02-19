@@ -61,7 +61,7 @@ about:
   summary: Bootstrap-based Sphinx theme from the PyData community
   description: |
     A clean, three-column, Bootstrap-based Sphinx theme by and for the PyData community.
-  doc_url: https://pydata-sphinx-theme.readthedocs.io/
+  doc_url: https://github.com/pydata/pydata-sphinx-theme/blob/main/README.md
   dev_url: https://github.com/pydata/pydata-sphinx-theme
 
 extra:
