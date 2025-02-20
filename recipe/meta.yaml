@@ -33,7 +33,6 @@ requirements:
     - pygments >=2.7
     - accessible-pygments
     - typing-extensions
-    - packaging
     - python
 
 test:
