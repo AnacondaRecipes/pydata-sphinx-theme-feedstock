@@ -1,70 +1,65 @@
-{% set version = "0.12.0" %}
-{% set cov_fail_under = "82" %}
-{% set min_sphinx = "4.2" %}
-
+{% set name = "pydata-sphinx-theme" %}
+{% set version = "0.16.1" %}
 package:
   name: pydata-sphinx-theme
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/py3/p/pydata-sphinx-theme/pydata_sphinx_theme-{{ version }}-py3-none-any.whl
-    sha256: c17dbab67a3774f06f34f6378e896fcd0668cc8b5da1c1ba017e65cf1df0af58
-  - folder: src
-    url: https://github.com/pydata/pydata-sphinx-theme/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 1759e12524b440d136228086206fbd23c3cf8007a64d3cecd7eda492f85617d3
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydata_sphinx_theme-{{ version }}.tar.gz
+  sha256: a08b7f0b7f70387219dc659bff0893a7554d5eb39b59d3b8ef37b8401b7642d7
+  patches:
+    - 000_set_nodejs_version.patch   # [linux]
 
 build:
   number: 0
-  noarch: python
+  skip: true   #[py<39 or s390x]
   script:
-    - {{ PYTHON }} -m pip install --find-links . --no-index --ignore-installed --no-deps pydata-sphinx-theme
-    - cd {{ RECIPE_DIR }} && {{ PYTHON }} collect_licenses.py
-
+    - export STB_USE_SYSTEM_NODE=1  # [linux]
+    - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 requirements:
+  build:
+    - patch  # [linux]
   host:
     - pip
-    - python >=3.7
+    - python
+    - nodejs 20.17.0
+    - sphinx-theme-builder 0.2.0b2
+    - wheel
   run:
+    - sphinx >=6.1
     - beautifulsoup4
     - docutils !=0.17.0
-    - packaging
+    - babel
     - pygments >=2.7
-    - python >=3.7
-    - sphinx >={{ min_sphinx }}
+    - accessible-pygments
+    - typing-extensions
+    - python
 
 test:
   source_files:
-    - src/tests
+    - pyproject.toml
+    - tests
   imports:
     - pydata_sphinx_theme
   commands:
     - pip check
-    - cd src/tests
-    - pytest -vv --cov=pydata_sphinx_theme --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under={{ cov_fail_under }}
+    # ignoring test_build.py because we need pytest-regressions
+    - pytest -n auto tests --ignore=tests/test_build.py
   requires:
-    # probably _compatible_ with older versions of sphinx, but would fail tests
-    # see https://github.com/pydata/pydata-sphinx-theme/issues/446
-    - sphinx {{ min_sphinx }}.*
-    - jupyter_sphinx
-    - numpydoc
-    - pandas
     - pip
-    - plotly
-    - pytest-cov
-    - pytest-regressions
-    - recommonmark
-    - sphinx-thebe
-    - xarray
+    - pytest
+    - pytest-xdist
+    - defusedxml
 
 about:
   home: https://github.com/pydata/pydata-sphinx-theme
   license: BSD-3-Clause
   license_family: BSD
-  license_file:
-    - src/LICENSE
-    - third-party-licenses/font-awesome-LICENSE.txt
+  license_file: LICENSE
   summary: Bootstrap-based Sphinx theme from the PyData community
-  doc_url: https://pydata-sphinx-theme.readthedocs.io/
+  description: |
+    A clean, three-column, Bootstrap-based Sphinx theme by and for the PyData community.
+  doc_url: https://github.com/pydata/pydata-sphinx-theme/blob/main/README.md
   dev_url: https://github.com/pydata/pydata-sphinx-theme
 
 extra:
