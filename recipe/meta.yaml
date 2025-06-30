@@ -1,21 +1,23 @@
 {% set name = "pydata-sphinx-theme" %}
 {% set version = "0.16.1" %}
+
 package:
   name: pydata-sphinx-theme
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pydata_sphinx_theme-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydata_sphinx_theme-{{ version }}.tar.gz
   sha256: a08b7f0b7f70387219dc659bff0893a7554d5eb39b59d3b8ef37b8401b7642d7
   patches:
-    - 000_set_nodejs_version.patch   # [linux]
+    - 000_set_nodejs_version.patch  # [linux]
 
 build:
-  number: 0
-  skip: true   #[py<39 or s390x]
+  number: 1
+  skip: true  #[py<39 or s390x]
   script:
     - export STB_USE_SYSTEM_NODE=1  # [linux]
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+
 requirements:
   build:
     - patch  # [linux]
