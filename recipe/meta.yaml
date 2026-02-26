@@ -9,25 +9,27 @@ source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydata_sphinx_theme-{{ version }}.tar.gz
   sha256: a08b7f0b7f70387219dc659bff0893a7554d5eb39b59d3b8ef37b8401b7642d7
   patches:
-    - 000_set_nodejs_version.patch  # [linux]
+    - 000_set_nodejs_version.patch
 
 build:
-  number: 1
-  skip: true  #[py<39 or s390x]
+  number: 2
+  skip: true  #[py<39]
   script:
     - export STB_USE_SYSTEM_NODE=1  # [linux]
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   build:
-    - patch  # [linux]
   host:
     - pip
     - python
-    - nodejs 20.17.0
-    - sphinx-theme-builder 0.2.0b2
+    # babel is a missing host dependency, needed for sphinx-theme-builder
+    - babel
+    - nodejs 24.13.0
+    - sphinx-theme-builder
     - wheel
   run:
+    - python
     - sphinx >=6.1
     - beautifulsoup4
     - docutils !=0.17.0
@@ -35,7 +37,6 @@ requirements:
     - pygments >=2.7
     - accessible-pygments
     - typing-extensions
-    - python
 
 test:
   source_files:

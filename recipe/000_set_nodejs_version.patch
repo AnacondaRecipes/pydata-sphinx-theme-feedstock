@@ -13,7 +13,7 @@ index f8b2eb2..614861f 100644
 
  [tool.sphinx-theme-builder]
 -node-version = "22.9.0"
-+node-version = "20.17.0"
++node-version = "24.13.0"
  theme-name = "pydata_sphinx_theme"
  additional-compiled-static-assets = [
    "webpack-macros.html",
