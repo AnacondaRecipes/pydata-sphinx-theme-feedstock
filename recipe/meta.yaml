@@ -1,5 +1,5 @@
 {% set name = "pydata-sphinx-theme" %}
-{% set version = "0.17.1" %}
+{% set version = "0.18.0" %}
 
 package:
   name: pydata-sphinx-theme
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydata_sphinx_theme-{{ version }}.tar.gz
-  sha256: 2cfc1d926c753c77039b7ee53f0ccebcbee5e81f0db61432b01cbb10ad7fd0af
+  sha256: 6b875852312b0a514c426327a11204a276982755e218473517d5047703476900
   patches:
     - 000_set_nodejs_version.patch
 
@@ -25,19 +25,18 @@ requirements:
     - python
     # babel is a missing host dependency, needed for sphinx-theme-builder
     - babel
-    - nodejs 24.13.0
+    - nodejs 25.8.2
     - sphinx-theme-builder >=0.3.2
     - wheel
   run:
     - python
-    - sphinx >=7.0,<10
+    - sphinx >=8.0,<10
     - beautifulsoup4
     - docutils !=0.17.0
     - babel
     - pygments >=2.7
     - accessible-pygments
     - typing-extensions
-    - typing_extensions
 
 test:
   source_files:
