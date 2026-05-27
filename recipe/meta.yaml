@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydata_sphinx_theme-{{ version }}.tar.gz
-  sha256: 6b875852312b0a514c426327a11204a276982755e218473517d5047703476900
+  sha256: b4abc95ab02600872e060db07c79e056e87b7ea653ab1ffd0e0b1fa75a3003d4
   patches:
     - 000_set_nodejs_version.patch
 
