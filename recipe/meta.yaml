@@ -13,7 +13,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<310]
+  # sphinx 8+ requires python 3.11+
+  skip: true  # [py<311]
   script:
     - export STB_USE_SYSTEM_NODE=1  # [linux]
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
